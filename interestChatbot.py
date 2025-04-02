@@ -14,7 +14,7 @@ global mongo_client, db, chatgpt
 TELEGRAM_TOKEN = os.environ['TELEGRAM_ACCESS_TOKEN']
 MONGODB_CONN_STRING = os.environ['MONGODB_CONN_STRING']
 MONGODB_DB_NAME = os.environ['MONGODB_DB_NAME']
-MONGODB_SHARD_KEY = os.environ.get('MONGODB_SHARD_KEY', 'test')  # 默认分片键为 test
+MONGODB_SHARD_KEY = os.environ.get('MONGODB_SHARD_KEY')  # 默认分片键为 test
 
 CHATGPT_BASE_URL = os.environ['CHATGPT_BASICURL']
 CHATGPT_MODEL = os.environ['CHATGPT_MODELNAME']
