@@ -57,12 +57,7 @@ def main():
 
     # Initialize ChatGPT
     global chatgpt
-    chatgpt = HKBU_ChatGPT(
-        base_url=CHATGPT_BASE_URL,
-        model=CHATGPT_MODEL,
-        api_version=CHATGPT_API_VERSION,
-        access_token=CHATGPT_TOKEN
-    )
+    chatgpt = HKBU_ChatGPT()
     chatgpt_handler = MessageHandler(Filters.text & (~Filters.command), equip_chatgpt)
     dispatcher.add_handler(chatgpt_handler)
 
