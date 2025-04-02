@@ -47,7 +47,7 @@ def main():
     dispatcher.add_handler(CommandHandler("hello", hello))
 
     # Initialize ChatGPT
-    chatgpt = HKBU_ChatGPT(config)
+    chatgpt = HKBU_ChatGPT()
     chatgpt_handler = MessageHandler(Filters.text & (~Filters.command), equip_chatgpt)
     dispatcher.add_handler(chatgpt_handler)
 
@@ -70,6 +70,7 @@ def help_command(update: Update, context: CallbackContext) -> None:
 
 
 def add(update: Update, context: CallbackContext) -> None:
+    global config, mongo_client, db, chatgpt
     try:
         if not context.args:
             raise ValueError("Missing keyword")
@@ -100,6 +101,7 @@ def add(update: Update, context: CallbackContext) -> None:
 
 
 def hello(update: Update, context: CallbackContext) -> None:
+    global config, mongo_client, db, chatgpt
     try:
         name = ' '.join(context.args) or 'friend'
         update.message.reply_text(f'👋 Hello, {name}!')
@@ -108,6 +110,7 @@ def hello(update: Update, context: CallbackContext) -> None:
 
 
 def equip_chatgpt(update: Update, context: CallbackContext):
+    global config, mongo_client, db, chatgpt
     try:
         user_id = update.effective_user.id
         message_text = update.message.text.strip().lower()
@@ -195,6 +198,7 @@ def equip_chatgpt(update: Update, context: CallbackContext):
 
 
 def match_users(update: Update, context: CallbackContext):
+    global config, mongo_client, db, chatgpt
     try:
         shard_key = config['MONGODB']['SHARD_KEY_FIELD']
 
