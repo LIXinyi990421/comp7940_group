@@ -58,15 +58,18 @@ def main():
 
 
 def help_command(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(
-        '🌟 Available commands:\n'
-        '/add <keyword> - Count statistics\n'
-        '/hello <name> - Greet someone\n'
-        '/help - Show help\n\n'
-        '💡 Features:\n'
-        '1. Send "recommend activities" to get interest-based suggestions\n'
-        '2. Send "find partners" to find partners with shared interests'
-    )
+    try:
+        update.message.reply_text(
+            '🌟 Available commands:\n'
+            '/add <keyword> - Count statistics\n'
+            '/hello <name> - Greet someone\n'
+            '/help - Show help\n\n'
+            '💡 Features:\n'
+            '1. Send "recommend activities" to get interest-based suggestions\n'
+            '2. Send "find partners" to find partners with shared interests'
+        )
+    except Exception as e:
+        logging.error(f"Help command error:{e}")
 
 
 def add(update: Update, context: CallbackContext) -> None:
